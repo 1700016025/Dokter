@@ -1,6 +1,6 @@
 <template>
   <div class="my-form">
-      <form-class="ui form">
+      <form class="ui form">
         <div class="fields">
         <div class="four wide field">
             <label>name</label>
@@ -13,7 +13,7 @@
         </div>
 
         <div class="two wide field">
-            <button class="ui primary button submit-button">Save</button>
+            <button class="ui primary button submit-button">Simpan</button>
 
         </div>
     </div>

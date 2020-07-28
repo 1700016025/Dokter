@@ -8,17 +8,20 @@
 
      <div class="ui main container">
        <MyForm />
+       <CustomerList />
      </div>
   </div>
 </template>
 
 <script>
 import MyForm from "./components/MyFrom";
+import CustomerList from "./components/CustomerList";
 
 export default {
   name: "App",
   components: {
-    MyForm    
+    MyForm,
+    CustomerList   
   }
 }
 </script>
