@@ -1,8 +1,6 @@
 <template>
   <div class="customer-list">
     <div class="data">
-      <h5>Data Dokter</h5>
-      <button class="mini ui blue button" @click="$router.push('/tambah')">Tambah Data</button>
       <table class="ui celled table">
         <thead>
           <tr>
@@ -13,7 +11,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
+          <tr v-for="(dokter, index) in dokters" :key="index">
             <td>{{ dokter.id }}</td>
             <td>{{ dokter.nama }}</td>
             <td>{{ dokter.keahlian }}</td>
@@ -24,7 +22,7 @@
               >
                 Edit
               </button>
-              <button class="mini ui red button">Hapus</button>
+              <button class="mini ui red button" @click="deleteDkter(dokter.id)">Hapus</button>
             </td>
           </tr>
         </tbody>
@@ -34,24 +32,31 @@
 </template>
 
 <script>
-import router from '../router/index'
+import axios from 'axios'
 export default {
-  name: "dokter",
-  components: {
-  },
-  props: {
-    dokter: Object,
-  },
   data() {
     return {
-      nama: "",
-      keahlian: "",
+      dokters: [],
     };
   },
+  mounted() {
+    this.getDokter();
+  },
   methods: {
-      tambah: () => {
-          router.push('/tambah')
-      }
+    async getDokter() {
+      let smtr = await axios.get("http://localhost:3000/users");
+      this.dokters = smtr.data.values;
+      console.log(this.dokters);
+    },
+    async deleteDkter(a){
+        await axios.delete("http://localhost:3000/users/", {id:a})
+        .then((result) => {
+            console.log(result);
+            alert(JSON.stringify(result.data.values));
+        }).catch((err) => {
+            console.log(err);
+        });
+    }
   },
 };
 </script>
