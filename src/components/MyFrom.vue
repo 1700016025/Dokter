@@ -4,12 +4,12 @@
         <div class="fields">
         <div class="four wide field">
             <label>name</label>
-            <input type="text" name="name" placeholder="name" />
+            <input type="text" name="name" v-model="name" />
         </div>
 
         <div class="six wide field">
             <label>keahlian</label>
-            <input type="text" name="keahlian" placeholder="keahlian" />
+            <input type="text" name="keahlian" v-model="keahlian" />
         </div>
 
         <div class="two wide field">
@@ -23,7 +23,8 @@
 
 <script>
 export default {
-    name: "MyForm"
+    name: "MyForm",
+    props: ['name', 'keahlian']
 };
 </script>
 

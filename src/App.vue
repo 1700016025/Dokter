@@ -1,45 +1,43 @@
 <template>
   <div id="app">
-      <div class="ui fixed inverted menu vue-color">
-        <div class="ui container">
-          <a href="#" class="header item">Dokter</a>
-        </div>
-     </div>
+    <div class="ui fixed inverted menu vue-color">
+      <div class="ui container">
+        <a href="#" class="header item">Dokter</a>
+      </div>
+    </div>
 
-     <div class="ui main container">
-       <MyForm />
-       <CustomerList :customers = "customers" />
-     </div>
+    <div class="ui main container">
+      <!-- <MyForm :name="nama" :keahlian="keahlian" /> -->
+      <Customer v-for="dokter in dokters" :key="dokter.id" :dokter="dokter" />
+    </div>
   </div>
 </template>
 
 <script>
 import axios from "axios";
-import MyForm from "./components/MyFrom";
-import CustomerList from "./components/CustomerList";
+// import MyForm from "./components/MyFrom";
+import Customer from "./components/Customer";
 
 export default {
   name: "App",
   components: {
-    MyForm,
-    CustomerList   
+    // MyForm,
+    Customer,
   },
   data() {
     return {
-      url: "http://localhost/laravel-rest-api/public/api/customers",
-      customers: []
+      dokters: [],
     };
   },
-  mounted: {
-    getCustomers() {
-      axios.get(this.url).then(data => {
-        this.customers = data.data;
-      })
-    }
+  created() {
+    this.getDokter();
   },
-  created(){
-    this.getCustomers();
-  }
+  methods: {
+    async getDokter() {
+      let smtr = await axios.get("http://localhost:3000/users");
+      this.dokters = smtr.data.values;
+    },
+  },
 };
 </script>
 

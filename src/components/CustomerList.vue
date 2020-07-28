@@ -10,11 +10,10 @@
                       <th style="width: 148px;">Action</th>
                   </tr>
               </thead>
-
               <tbody>
-                  <Customer v-for="customer in customers" 
-                  :key="customer.id" 
-                  :customer="customer"
+                  <Customer v-for="dokter in dokters"
+                  :key="dokter.id"
+                  :dokter="dokter"
                   />
               </tbody>
           </table>
@@ -30,7 +29,7 @@ export default {
         Customer
     },
     props: {
-        customers: {
+        dokter: {
             type: Array
         }
     }
