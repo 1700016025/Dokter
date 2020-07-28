@@ -8,12 +8,13 @@
 
      <div class="ui main container">
        <MyForm />
-       <CustomerList />
+       <CustomerList :customers = "customers" />
      </div>
   </div>
 </template>
 
 <script>
+import axios from "axios";
 import MyForm from "./components/MyFrom";
 import CustomerList from "./components/CustomerList";
 
@@ -22,8 +23,24 @@ export default {
   components: {
     MyForm,
     CustomerList   
+  },
+  data() {
+    return {
+      url: "http://localhost/laravel-rest-api/public/api/customers",
+      customers: []
+    };
+  },
+  mounted: {
+    getCustomers() {
+      axios.get(this.url).then(data => {
+        this.customers = data.data;
+      })
+    }
+  },
+  created(){
+    this.getCustomers();
   }
-}
+};
 </script>
 
 <style>
