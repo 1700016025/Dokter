@@ -53,9 +53,9 @@ export default {
     async save() {
       const x = new URLSearchParams(window.location.search);
       for (const param of x) {
-        this.user_id = param["1"];
+        this.form.user_id = param["1"];
       }
-      if (this.user_id == "") {
+      if (this.form.user_id == "") {
         this.add();
       } else {
         this.edit();
