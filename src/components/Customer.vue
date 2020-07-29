@@ -46,13 +46,12 @@ export default {
     async getDokter() {
       let smtr = await axios.get("http://localhost:3000/users");
       this.dokters = smtr.data.values;
-      console.log(this.dokters);
     },
     async deleteDkter(a){
-        await axios.delete("http://localhost:3000/users/", {id:a})
+        await axios.delete("http://localhost:3000/users/", {data: {user_id:a}})
         .then((result) => {
-            console.log(result);
             alert(JSON.stringify(result.data.values));
+            this.getDokter()
         }).catch((err) => {
             console.log(err);
         });
