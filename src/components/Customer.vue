@@ -55,6 +55,9 @@ export default {
         }).catch((err) => {
             console.log(err);
         });
+    },
+    async editDokter(a){
+      location.replace('/tambah'+'?id='+a)
     }
   },
 };
