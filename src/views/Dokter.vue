@@ -8,6 +8,9 @@
 
     <div class="ui main container">
       <!-- <MyForm :name="nama" :keahlian="keahlian" /> -->
+      <button class="ui primary button" style="float:left; margin:10px;" @click="$router.push('/tambah')">
+          Tambah Dokter
+        </button>
       <Customer />
     </div>
   </div>
